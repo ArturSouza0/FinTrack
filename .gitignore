@@ -1,0 +1,11 @@
+# Node modules
+node_modules/
+
+# Angular build
+frontend/dist/
+
+# NestJS build
+backend/dist/
+
+# Logs
+*.log
