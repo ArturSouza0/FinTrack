@@ -1,0 +1,564 @@
+type: collection.insomnia.rest/5.0
+name: FinTrack
+meta:
+  id: wrk_790a82bca45d4ed6bb74eb2f99f23349
+  created: 1757119860009
+  modified: 1757119860009
+  description: ""
+collection:
+  - name: Users
+    meta:
+      id: fld_ea39ce3a190248c2a2400bd296d34f0c
+      created: 1757119874974
+      modified: 1757119874974
+      sortKey: -1757119874975
+      description: ""
+    children:
+      - url: http://localhost:3000/users/create
+        name: Create
+        meta:
+          id: req_fb9a341732dd4e4bbd9e40dcbd9a2cfa
+          created: 1757119879236
+          modified: 1757127092740
+          isPrivate: false
+          description: ""
+          sortKey: -1757119879236
+        method: POST
+        body:
+          mimeType: application/json
+          text: "{
+
+            \  \"name\": \"Clebin Do Pneu\",
+
+            \  \"email\": \"clein123@gmail.com\",
+
+            \  \"password\": \"123456\"
+
+            }
+
+            \t\t"
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.4.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/users/findAll
+        name: FIndAll
+        meta:
+          id: req_8fa764074a364b868afa7abe1e722585
+          created: 1757120459233
+          modified: 1757120490846
+          isPrivate: false
+          description: ""
+          sortKey: -1757120459233
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.4.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/users/findById
+        name: FIndById
+        meta:
+          id: req_9ae8e94989bc4d508392733f42169ce0
+          created: 1757120545639
+          modified: 1757121538123
+          isPrivate: false
+          description: ""
+          sortKey: -1757120459333
+        method: GET
+        body:
+          mimeType: application/json
+          text: "{
+
+            \  \"id\": \"300d01da-910b-45f0-a3db-d75e35b5c503\"
+
+            }
+
+            \t"
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.4.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/users/findByEmail
+        name: FIndByEmail
+        meta:
+          id: req_58d788896e654ac3a0571f6c9f338c73
+          created: 1757120587128
+          modified: 1757121215040
+          isPrivate: false
+          description: ""
+          sortKey: -1757120587128
+        method: GET
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "email": "artur@email.com"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.4.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/users/update
+        name: Update
+        meta:
+          id: req_b58f0d41c57b4c7594e8bc9adb160a40
+          created: 1757122056446
+          modified: 1757125682234
+          isPrivate: false
+          description: ""
+          sortKey: -1757122056446
+        method: PUT
+        body:
+          mimeType: application/json
+          text: "
+
+            {
+
+            \  \"id\": \"a1a4fe0d-648d-41c9-ac87-16e492c8bc57\",
+
+            \  \"user\": {
+
+            \    \"name\": \"krebin do Graun\"
+
+            \  }
+
+            }
+
+            \t\t\t"
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.4.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/users/delete
+        name: Delete
+        meta:
+          id: req_d031ee0a094e408d824a8e10b471e441
+          created: 1757122773209
+          modified: 1757122982834
+          isPrivate: false
+          description: ""
+          sortKey: -1757122773209
+        method: DELETE
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            "id":"f131d09b-17d2-4883-b8c3-054780545cb8"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.4.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Categories
+    meta:
+      id: fld_873c2b7d48544a40ad2a1a000de23571
+      created: 1759104597560
+      modified: 1759104597560
+      sortKey: -1759104597560
+      description: ""
+    children:
+      - url: http://localhost:3000/categories/create
+        name: Create
+        meta:
+          id: req_5d0ad549c96c42dfb78cfb8d269604e8
+          created: 1759104602957
+          modified: 1759104709552
+          isPrivate: false
+          description: ""
+          sortKey: -1759104602957
+        method: POST
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "name": "Alimentação",
+              "type": "expense",
+              "userId": "300d01da-910b-45f0-a3db-d75e35b5c503"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.4.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/categories/findByUserId
+        name: FindByUserUserId
+        meta:
+          id: req_f09016b530dc4435ab135aea3c56bf34
+          created: 1759104724040
+          modified: 1759104801641
+          isPrivate: false
+          description: ""
+          sortKey: -1759104724040
+        method: GET
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "userId": "300d01da-910b-45f0-a3db-d75e35b5c503"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.4.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/categories/findById
+        name: FindById
+        meta:
+          id: req_dc7fe0afae814ad582b1d99c7dac8ee2
+          created: 1759104814457
+          modified: 1759104902257
+          isPrivate: false
+          description: ""
+          sortKey: -1759104814457
+        method: GET
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"id":"4ec944c4-6652-4cd8-9bfa-2d13276f7f91"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.4.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/categories/update
+        name: Update
+        meta:
+          id: req_72c00b71dab4417ca617389f01f31ca9
+          created: 1759104920988
+          modified: 1759104950544
+          isPrivate: false
+          description: ""
+          sortKey: -1759104920988
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "id": "a7c2d01b-2b32-45f3-9d41-efcd22b92c10",
+              "name": "Supermercado",
+              "type": "expense"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.4.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/categories/delete
+        name: Delete
+        meta:
+          id: req_418acf0fe6d94c7498026ce7ddd74e94
+          created: 1759104968796
+          modified: 1760798482104
+          isPrivate: false
+          description: ""
+          sortKey: -1759104968796
+        method: DELETE
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            "id": ""
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.4.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Transactions
+    meta:
+      id: fld_93c12c6b05c144638aea2e79dc8dc0f6
+      created: 1760797409588
+      modified: 1760797409588
+      sortKey: -1760797409588
+      description: ""
+    children:
+      - url: http://localhost:3000/transactions/create
+        name: Create
+        meta:
+          id: req_833d44ebcc6c47fcaf02ca79c570dfa6
+          created: 1760797419000
+          modified: 1760797994515
+          isPrivate: false
+          description: ""
+          sortKey: -1760797419000
+        method: POST
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "title": "Almoço no restaurante",
+              "amount": 45.9,
+              "type": "expense",
+              "date": "2025-10-17T15:00:00Z",
+              "categoryId": "4ec944c4-6652-4cd8-9bfa-2d13276f7f91",
+              "userId": "300d01da-910b-45f0-a3db-d75e35b5c503"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.4.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/transactions/findByUserId
+        name: FIndByUserId
+        meta:
+          id: req_50d36e9b01dd4ce6af1521a8b27359b1
+          created: 1760798062373
+          modified: 1760798164977
+          isPrivate: false
+          description: ""
+          sortKey: -1760798062373
+        method: GET
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            "userId": "300d01da-910b-45f0-a3db-d75e35b5c503"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.4.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/transactions/findByCategoryId
+        name: FIndByCategoryId
+        meta:
+          id: req_965bdf62d1ff4295847280bb65246f5e
+          created: 1760798196368
+          modified: 1760798226369
+          isPrivate: false
+          description: ""
+          sortKey: -1760797740686.5
+        method: GET
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            "categoryId": "4ec944c4-6652-4cd8-9bfa-2d13276f7f91"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.4.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/transactions/findById
+        name: FIndById
+        meta:
+          id: req_727bbe123af0479bac371aeef59a50f5
+          created: 1760798254332
+          modified: 1760798279381
+          isPrivate: false
+          description: ""
+          sortKey: -1760797901529.75
+        method: GET
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"id": "ec1a0da1-2c24-44a9-b945-7290fccc4ab3"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.4.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/transactions/update
+        name: Update
+        meta:
+          id: req_5643def6f1584086890529ca9233f527
+          created: 1760798302834
+          modified: 1760798400746
+          isPrivate: false
+          description: ""
+          sortKey: -1760797981951.375
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |
+            {
+            	"id": "ec1a0da1-2c24-44a9-b945-7290fccc4ab3",
+              "title": "Almoço no shopping",
+              "amount": 59.90,
+              "date": "2025-10-17T12:30:00Z",
+              "receiptUrl": "https://exemplo.com/recibos/almoco.pdf"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.4.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/transactions/delete
+        name: Delete
+        meta:
+          id: req_38f0d099c28b4c309393f0fd98a8b930
+          created: 1760798439176
+          modified: 1760798459782
+          isPrivate: false
+          description: ""
+          sortKey: -1760797941740.5625
+        method: DELETE
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            		"id": "ec1a0da1-2c24-44a9-b945-7290fccc4ab3"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.4.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_4fbcf34420747f06b3d8555138a9196d7dab68f2
+    created: 1757119860022
+    modified: 1757119860022
+environments:
+  name: Base Environment
+  meta:
+    id: env_4fbcf34420747f06b3d8555138a9196d7dab68f2
+    created: 1757119860017
+    modified: 1757119860017
+    isPrivate: false
