@@ -1,0 +1,124 @@
+<!-- components/category-form/category-form.component.html -->
+<!-- Overlay -->
+@if (open()) {
+<div class="fixed inset-0 bg-black bg-opacity-50 z-40" (click)="close()"></div>
+}
+
+<!-- Form Panel -->
+<div
+  class="fixed inset-y-0 right-0 max-w-md w-full bg-neutral-950 border-l border-gray-800 z-50 transform transition-transform duration-300 ease-in-out"
+  [class]="open() ? 'translate-x-0' : 'translate-x-full'"
+>
+  <div class="flex flex-col h-full">
+    <!-- Header -->
+    <div class="flex items-center justify-between p-6 border-b border-gray-800">
+      <h3 class="text-lg font-semibold text-gray-100">
+        {{ category() ? "Editar Categoria" : "Nova Categoria" }}
+      </h3>
+      <button
+        (click)="close()"
+        class="p-2 text-gray-400 hover:text-gray-100 rounded-lg transition-colors"
+      >
+        <!-- Usar lucide-angular diretamente -->
+        <lucide-angular [img]="plusIcon" class="h-5 w-5 rotate-45" />
+      </button>
+    </div>
+
+    <!-- Form -->
+    <div class="flex-1 overflow-y-auto p-6">
+      <form class="space-y-6" (ngSubmit)="submit()">
+        <!-- Name -->
+        <div>
+          <label class="block text-sm font-medium text-gray-300 mb-2">
+            Nome da Categoria
+          </label>
+          <input
+            type="text"
+            [(ngModel)]="formData().name"
+            name="name"
+            class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+            placeholder="Ex: Alimentação, Salário, Transporte..."
+          />
+          @if (errors()['name']) {
+          <p class="mt-1 text-sm text-red-500">{{ errors()["name"] }}</p>
+          }
+        </div>
+
+        <!-- Type -->
+        <div>
+          <label class="block text-sm font-medium text-gray-300 mb-3">
+            Tipo
+          </label>
+          <div class="grid grid-cols-2 gap-3">
+            <button
+              type="button"
+              (click)="setType('income')"
+              [class]="
+                formData().type === 'income'
+                  ? 'bg-emerald-500 text-white border-emerald-500'
+                  : 'bg-gray-800 text-gray-300 border-gray-700 hover:bg-gray-700'
+              "
+              class="flex items-center justify-center gap-2 py-3 px-4 border rounded-lg transition-colors"
+            >
+              <!-- Usar lucide-angular diretamente -->
+              <lucide-angular [img]="trendingUpIcon" class="h-4 w-4" />
+              Receita
+            </button>
+            <button
+              type="button"
+              (click)="setType('expense')"
+              [class]="
+                formData().type === 'expense'
+                  ? 'bg-red-500 text-white border-red-500'
+                  : 'bg-gray-800 text-gray-300 border-gray-700 hover:bg-gray-700'
+              "
+              class="flex items-center justify-center gap-2 py-3 px-4 border rounded-lg transition-colors"
+            >
+              <!-- Usar lucide-angular diretamente -->
+              <lucide-angular [img]="trendingDownIcon" class="h-4 w-4" />
+              Despesa
+            </button>
+          </div>
+        </div>
+
+        <!-- Info -->
+        <div class="bg-blue-900/20 border border-blue-800 rounded-lg p-4">
+          <div class="flex items-start gap-3">
+            <!-- Usar lucide-angular diretamente -->
+            <lucide-angular
+              [img]="infoIcon"
+              class="h-5 w-5 text-blue-400 mt-0.5"
+            />
+            <div class="text-sm text-blue-300">
+              <p class="font-medium">Dica</p>
+              <p class="mt-1">
+                Crie categorias que façam sentido para sua organização
+                financeira.
+              </p>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Footer -->
+    <div class="p-6 border-t border-gray-800">
+      <div class="flex gap-3">
+        <button
+          type="button"
+          (click)="close()"
+          class="flex-1 py-2 px-4 bg-gray-800 text-gray-300 rounded-lg hover:bg-gray-700 transition-colors"
+        >
+          Cancelar
+        </button>
+        <button
+          type="button"
+          (click)="submit()"
+          class="flex-1 py-2 px-4 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
+        >
+          {{ category() ? "Atualizar" : "Criar" }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

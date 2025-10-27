@@ -1,0 +1,41 @@
+src/
+├── app/
+│   ├── components/
+│   │   ├── layout/                        ✅ PRONTO
+│   │   │   ├── layout.component.ts
+│   │   │   └── layout.component.html
+│   │   ├── transaction-form/              ✅ PRONTO
+│   │   │   ├── transaction-form.component.ts
+│   │   │   └── transaction-form.component.html
+│   │   ├── category-form/                 ✅ PRONTO
+│   │   │   ├── category-form.component.ts
+│   │   │   └── category-form.component.html              
+│   │   ├── expense-chart/                 🚧 FALTANDO  
+│   │   ├── recent-transactions/           🚧 FALTANDO
+│   │   ├── stat-cards/                    🚧 FALTANDO
+│   │   ├── loading/                       🚧 FALTANDO
+│   │   └── confirm-dialog/                🚧 FALTANDO
+│   ├── pages/
+│   │   ├── transactions/                  ✅ PRONTO
+│   │   │   ├── transactions.ts
+│   │   │   └── transactions.html
+│   │   ├── dashboard/                     🚧 FALTANDO
+│   │   ├── categories/                    ✅ PRONTO
+│   │   │   ├── categories.ts
+│   │   │   └── categories.html            
+│   │   ├── reports/                       🚧 FALTANDO
+│   │   └── welcome/                       🚧 FALTANDO
+│   ├── core/
+│   │   ├── services/
+│   │   │   ├── transaction.service.ts     ✅ PRONTO
+│   │   │   ├── category.service.ts        ✅ PRONTO
+│   │   │   ├── auth.service.ts            🚧 FALTANDO
+│   │   │   ├── storage.service.ts         🚧 FALTANDO
+│   │   │   └── toast.service.ts           🚧 FALTANDO
+│   │   └── guards/                        🚧 FALTANDO
+│   │       └── auth.guard.ts
+│   ├── shared/
+│   │   └── utils/                         🚧 FALTANDO
+│   ├── app.component.ts                   ✅ PRONTO
+│   ├── app.routes.ts                      ✅ PRONTO
+│   └── app.config.ts                      ✅ PRONTO

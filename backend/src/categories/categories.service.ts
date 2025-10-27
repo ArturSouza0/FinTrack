@@ -36,8 +36,9 @@ export class CategoriesService {
     };
   }
 
-  async getCategoryById(body: FindCategoryByIdDto) {
-    const { id } = body;
+  async getCategoryById(query: FindCategoryByIdDto) {
+    const { id } = query; // Agora desestrutura de query, não de body
+
     const category = await this.prismaService.category.findUnique({
       where: { id },
     });
@@ -49,10 +50,12 @@ export class CategoriesService {
     return category;
   }
 
-  async getCategoriesByUserId(body: FindCategoriesByUserIdDto) {
-    const { userId: string } = body;
+  async getCategoriesByUserId(query: FindCategoriesByUserIdDto) {
+    const { userId } = query; // Agora desestrutura de query, não de body
+
     const categories = await this.prismaService.category.findMany({
-      where: { userId: string },
+      where: { userId },
+      orderBy: { name: 'asc' },
     });
 
     return categories;

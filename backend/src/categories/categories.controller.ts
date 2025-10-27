@@ -1,4 +1,12 @@
-import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Post,
+  Put,
+  Query,
+} from '@nestjs/common';
 import {
   CreateCategoryDto,
   DeleteCategoryDto,
@@ -17,12 +25,12 @@ export class CategoriesController {
     return this.categoriesService.createCategory(body);
   }
   @Get('findByUserId')
-  getCategoriesByUserId(@Body() body: FindCategoriesByUserIdDto) {
-    return this.categoriesService.getCategoriesByUserId(body);
+  getCategoriesByUserId(@Query() query: FindCategoriesByUserIdDto) {
+    return this.categoriesService.getCategoriesByUserId(query);
   }
   @Get('findById')
-  getCategoryById(@Body() body: FindCategoryByIdDto) {
-    return this.categoriesService.getCategoryById(body);
+  getCategoryById(@Query() query: FindCategoryByIdDto) {
+    return this.categoriesService.getCategoryById(query);
   }
   @Put('update')
   updateCategory(@Body() body: UpdateCategoryDto) {

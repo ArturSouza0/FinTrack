@@ -1,4 +1,12 @@
-import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Post,
+  Put,
+  Query,
+} from '@nestjs/common';
 import {
   CreateTransactionDto,
   DeleteTransactionDto,
@@ -18,19 +26,22 @@ export class TransactionsController {
     return this.transactionsService.createTransaction(body);
   }
 
+  // 🔁 Alterar para Query Parameters
   @Get('findByUserId')
-  getTransactionsByUserId(@Body() body: FindTransactionsByUserIdDto) {
-    return this.transactionsService.getTransactionsByUserId(body);
+  getTransactionsByUserId(@Query() query: FindTransactionsByUserIdDto) {
+    return this.transactionsService.getTransactionsByUserId(query);
   }
 
+  // 🔁 Alterar para Query Parameters
   @Get('findByCategoryId')
-  getTransactionsByCategoryId(@Body() body: FindTransactionsByCategoryIdDto) {
-    return this.transactionsService.getTransactionsByCategoryId(body);
+  getTransactionsByCategoryId(@Query() query: FindTransactionsByCategoryIdDto) {
+    return this.transactionsService.getTransactionsByCategoryId(query);
   }
 
+  // 🔁 Alterar para Query Parameters
   @Get('findById')
-  getTransactionById(@Body() body: FindTransactionByIdDto) {
-    return this.transactionsService.getTransactionById(body);
+  getTransactionById(@Query() query: FindTransactionByIdDto) {
+    return this.transactionsService.getTransactionById(query);
   }
 
   @Put('update')
