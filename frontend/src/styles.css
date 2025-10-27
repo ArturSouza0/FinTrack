@@ -1,1 +1,20 @@
 @import "tailwindcss";
+/* Adicione no seu styles.css global ou no style do componente */
+.expense-chart-container {
+  container-type: inline-size;
+}
+
+@container (max-width: 400px) {
+  .chart-legend {
+    grid-template-columns: 1fr;
+  }
+  
+  .chart-main {
+    flex-direction: column;
+  }
+}
+
+/* Suaviza as animações do gráfico */
+circle {
+  transition: all 0.5s ease-out;
+}

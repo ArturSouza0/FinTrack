@@ -1,0 +1,31 @@
+<div class="space-y-6 space-x-6">
+  <div class="flex flex-wrap justify-between items-center gap-4">
+    <h2 class="text-3xl font-bold tracking-tight text-gray-100">Visão Geral</h2>
+    <button
+      [routerLink]="'/transactions'"
+      class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg flex items-center transition-colors"
+    >
+      <lucide-angular [img]="plusIcon" class="mr-2 h-4 w-4" />
+      Nova Transação
+    </button>
+  </div>
+  <!-- Stat Cards -->
+  <app-stat-cards [stats]="statCards()" [isLoading]="isLoading()" />
+
+  <!-- Charts and Recent Transactions -->
+  <div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
+    <!-- Expense Chart -->
+    <div class="lg:col-span-3">
+      <app-expense-chart [chartData]="chartData()" [isLoading]="isLoading()" />
+    </div>
+
+    <!-- Recent Transactions -->
+    <div class="lg:col-span-2">
+      <app-recent-transactions
+        [transactions]="getRecentTransactions()"
+        [categories]="categories()"
+        [isLoading]="isLoading()"
+      />
+    </div>
+  </div>
+</div>
