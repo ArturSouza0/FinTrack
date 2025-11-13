@@ -1,18 +1,19 @@
-import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Put, Req } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { CreateUseDto, UpdateUserDto } from './Users';
+import { UpdateUserDto } from './Users';
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Post('create')
-  create(@Body() user: CreateUseDto) {
-    return this.usersService.createUser(user);
-  }
   @Get('findAll')
   getUsers() {
     return this.usersService.getUsers();
+  }
+  @Get('me')
+  getProfile(@Req() request: Request) {
+    const user = request['user'];
+    return this.usersService.getMyProfile(user['id']);
   }
   @Get('findById')
   getUserById(@Body() body: { id: string }) {

@@ -1,19 +1,23 @@
+// prisma/schema.prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-generator client {
-  provider = "prisma-client-js"
-}
-
 model User {
-  id        String       @id @default(uuid())
-  name      String
-  email     String       @unique
-  password  String
-  createdAt DateTime     @default(now())
-  categories Category[]
+  id           String       @id @default(uuid())
+  name         String
+  email        String       @unique
+  password     String
+  refreshToken String?
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  
+  categories   Category[]
   transactions Transaction[]
 }
 
@@ -23,6 +27,9 @@ model Category {
   type      TransactionType
   userId    String
   user      User         @relation(fields: [userId], references: [id])
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+  
   transactions Transaction[]
 }
 
@@ -38,6 +45,7 @@ model Transaction {
   user        User         @relation(fields: [userId], references: [id])
   receiptUrl  String?
   createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
 }
 
 enum TransactionType {

@@ -1,11 +1,10 @@
 import {
-  BadRequestException,
   ConflictException,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { CreateUseDto, UpdateUserDto, UserResponseDto } from './Users';
+import { UpdateUserDto, UserResponseDto } from './Users';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
@@ -22,31 +21,42 @@ export class UsersService {
     return new UserResponseDto(user);
   }
 
-  async createUser(
-    createUseDto: CreateUseDto,
-  ): Promise<{ message: string; user: UserResponseDto }> {
-    const email = createUseDto.email.toLowerCase();
-    const existingUser = await this.prismaService.user.findUnique({
-      where: { email },
-    });
-    if (existingUser) {
-      throw new BadRequestException('User with this email already exists');
-    }
-
-    const hashedPassword = await bcrypt.hash(createUseDto.password, 10);
-    const newUser = await this.prismaService.user.create({
-      data: { ...createUseDto, email, password: hashedPassword },
-    });
-
-    return {
-      message: `User ${newUser.name} created successfully`,
-      user: this.toUserResponse(newUser),
-    };
-  }
-
   async getUsers(): Promise<UserResponseDto[]> {
     const users = await this.prismaService.user.findMany();
     return users.map((user) => this.toUserResponse(user));
+  }
+  async getMyProfile(
+    userId: string,
+  ): Promise<
+    UserResponseDto & { categoriesCount?: number; transactionsCount?: number }
+  > {
+    const user = await this.prismaService.user.findUnique({
+      where: { id: userId },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        createdAt: true,
+        _count: {
+          select: {
+            categories: true,
+            transactions: true,
+          },
+        },
+      },
+    });
+
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    const { _count, ...userData } = user;
+
+    return {
+      ...this.toUserResponse(userData),
+      categoriesCount: _count.categories,
+      transactionsCount: _count.transactions,
+    };
   }
 
   async getUserById(id: string): Promise<UserResponseDto> {
