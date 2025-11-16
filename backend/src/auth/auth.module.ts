@@ -18,7 +18,7 @@ import { JwtRefreshGuard } from './guards/jwt-refresh.guard';
       useFactory: (configService: ConfigService) => ({
         secret:
           configService.get<string>('JWT_ACCESS_SECRET') || 'fallback-secret',
-        signOptions: { expiresIn: '15m' },
+        signOptions: { expiresIn: '10s' },
       }),
       inject: [ConfigService],
     }),

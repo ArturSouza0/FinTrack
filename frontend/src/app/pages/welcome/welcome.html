@@ -1,0 +1,103 @@
+<div class="min-h-screen bg-black text-gray-100">
+  <!-- Navigation -->
+  <nav class="border-b border-gray-800 bg-neutral-950">
+    <div class="container mx-auto px-4 py-4">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-linear-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-500/50">
+            <lucide-angular [img]="walletIcon" class="h-6 w-6 text-white" />
+          </div>
+          <span class="text-xl font-bold bg-linear-to-r from-emerald-400 to-emerald-600 bg-clip-text text-transparent">
+            Finanças
+          </span>
+        </div>
+        
+        <div class="flex gap-4">
+          <a
+            [routerLink]="'/login'"
+            class="text-gray-300 hover:text-emerald-400 transition-colors font-medium px-4' py-2"
+          >
+            Entrar
+          </a>
+          <a
+            [routerLink]="'/login'"
+            class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg transition-colors font-medium"
+          >
+            Criar Conta
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <div class="container mx-auto px-4 py-16">
+    <div class="text-center max-w-4xl mx-auto">
+      <h1 class="text-5xl md:text-6xl font-bold mb-6 bg-linear-to-r from-emerald-400 to-emerald-600 bg-clip-text text-transparent">
+        Controle suas Finanças
+      </h1>
+      
+      <p class="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
+        Gerencie seu dinheiro de forma inteligente com relatórios detalhados, 
+        categorização automática e insights poderosos.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+        <button
+          (click)="quickStart()"
+          class="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-lg flex items-center justify-center transition-colors font-medium text-lg"
+        >
+          Começar Agora
+          <lucide-angular [img]="arrowRightIcon" class="ml-2 h-5 w-5" />
+        </button>
+        
+        <a
+          [routerLink]="'/login'"
+          class="border border-gray-700 hover:border-emerald-500 text-gray-300 hover:text-emerald-400 px-8 py-4 rounded-lg transition-colors font-medium text-lg flex items-center justify-center"
+        >
+          Fazer Login
+        </a>
+      </div>
+    </div>
+
+    <!-- Features Grid -->
+    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mt-20">
+      @for (feature of features; track feature.title) {
+        <div class="bg-neutral-950 border border-gray-800 rounded-lg p-8 text-center hover:border-emerald-500 transition-colors group">
+          <div class="w-16 h-16 bg-emerald-500/10 rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:bg-emerald-500/20 transition-colors">
+            <lucide-angular [img]="feature.icon" class="h-8 w-8 text-emerald-500" />
+          </div>
+          <h3 class="text-xl font-semibold text-gray-100 mb-4">{{ feature.title }}</h3>
+          <p class="text-gray-400">{{ feature.description }}</p>
+        </div>
+      }
+    </div>
+
+    <!-- Stats Section -->
+    <div class="max-w-4xl mx-auto mt-20 text-center">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center">
+          <div class="text-3xl font-bold text-emerald-500 mb-2">100%</div>
+          <div class="text-gray-400">Gratuito</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl font-bold text-emerald-500 mb-2">24/7</div>
+          <div class="text-gray-400">Disponível</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl font-bold text-emerald-500 mb-2">100%</div>
+          <div class="text-gray-400">Seguro</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="border-t border-gray-800 bg-neutral-950 mt-20">
+    <div class="container mx-auto px-4 py-8">
+      <div class="text-center text-gray-500">
+        <p>&copy; 2024 Finanças. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+</div>

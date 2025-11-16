@@ -1,7 +1,6 @@
 import { Component, OnInit, inject, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CategoryService } from '../../core/services/category.service';
-
 import { CategoryFormComponent } from '../../shared/components/category-form/category-form.component';
 import { LucideAngularModule } from 'lucide-angular';
 import {
@@ -14,6 +13,7 @@ import {
   Shapes,
 } from 'lucide-angular';
 import { Category } from '../../core/models/category.model';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-categories',
@@ -23,6 +23,7 @@ import { Category } from '../../core/models/category.model';
 })
 export class Categories implements OnInit {
   private categoryService = inject(CategoryService);
+  private authService = inject(AuthService);
 
   showForm = signal(false);
   editingCategory = signal<Category | null>(null);
@@ -106,16 +107,11 @@ export class Categories implements OnInit {
     }
   }
 
-  deleteCategory(id: string) {
-    if (
-      confirm(
-        'Tem certeza que deseja excluir esta categoria?\n\nTransações associadas a esta categoria não serão excluídas, mas ficarão sem categoria.'
-      )
-    ) {
-      this.categoryService.deleteCategory(id).subscribe({
-        next: () => console.log('Categoria excluída com sucesso'),
-        error: (error) => console.error('Erro ao excluir categoria:', error),
-      });
+async deleteCategory(id: string) {
+    try {
+      await this.categoryService.deleteCategory(id);
+    } catch (error: any) {
+      console.error('Erro ao excluir categoria:', error);
     }
   }
 
@@ -127,8 +123,7 @@ export class Categories implements OnInit {
     return type === 'income' ? 'text-emerald-500' : 'text-red-500';
   }
 
-  private getCurrentUserId(): string {
-    // Implemente de acordo com sua lógica de autenticação
-    return '300d01da-910b-45f0-a3db-d75e35b5c503';
+  private getCurrentUserId(): string | null {
+    return this.authService.getCurrentUserId();
   }
 }

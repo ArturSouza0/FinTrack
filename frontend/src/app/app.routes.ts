@@ -1,12 +1,44 @@
 // app.routes.ts
 import { Routes } from '@angular/router';
-import { LayoutComponent } from './shared/components/layout/layout';
+import { LayoutComponent } from './shared/components/layout/layout.component';
+import { AuthGuard, PublicGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
+  // Rotas Públicas (sem layout)
+  {
+    path: '',
+    canActivate: [PublicGuard],
+    loadComponent: () =>
+      import('./pages/welcome/welcome').then(
+        (m) => m.Welcome
+      ),
+  },
+  {
+    path: 'welcome',
+    canActivate: [PublicGuard],
+    loadComponent: () =>
+      import('./pages/welcome/welcome').then(
+        (m) => m.Welcome
+      ),
+  },
+  {
+    path: 'login',
+    canActivate: [PublicGuard],
+    loadComponent: () =>
+      import('./pages/login/login').then((m) => m.Login),
+  },
+
+
   {
     path: '',
     component: LayoutComponent,
+    canActivate: [AuthGuard],
     children: [
+      {
+        path: 'dashboard',
+        loadComponent: () =>
+          import('./pages/dashboard/dashboard').then((m) => m.Dashboard),
+      },
       {
         path: 'transactions',
         loadComponent: () =>
@@ -20,11 +52,18 @@ export const routes: Routes = [
           import('./pages/categories/categories').then((m) => m.Categories),
       },
       {
-        path: 'dashboard',
+        path: 'reports',
         loadComponent: () =>
-          import('./pages/dashboard/dashboard').then((m) => m.Dashboard),
+          import('./pages/reports/reports').then(
+            (m) => m.Reports
+          ),
       },
-      { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     ],
+  },
+
+  {
+    path: '**',
+    redirectTo: 'welcome',
   },
 ];

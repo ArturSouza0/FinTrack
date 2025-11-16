@@ -11,6 +11,7 @@ import { CategoryService } from '../../core/services/category.service';
 import { ExpenseChartComponent } from '../../shared/components/expense-chart/expense-chart.component';
 import { RecentTransactionsComponent } from '../../shared/components/recent-transactions/recent-transactions.component';
 import { StatCardsComponent } from '../../shared/components/stat-cards/start-cards.component';
+import { AuthService } from '../../core/services/auth.service';
 
 
 @Component({
@@ -30,6 +31,7 @@ export class Dashboard implements OnInit {
   private dashboardService = inject(DashboardService);
   private transactionService = inject(TransactionService);
   private categoryService = inject(CategoryService);
+  private authService = inject(AuthService);
 
   private loadAttempts = signal(0);
   private maxLoadAttempts = 3;
@@ -156,8 +158,7 @@ export class Dashboard implements OnInit {
     return this.transactionService.transactions().slice(0, 5);
   }
 
-  private getCurrentUserId(): string {
-    // Implemente de acordo com sua lógica de autenticação
-    return '300d01da-910b-45f0-a3db-d75e35b5c503';
+  private getCurrentUserId(): string | null {
+    return this.authService.getCurrentUserId();
   }
 }

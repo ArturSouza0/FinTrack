@@ -1,0 +1,137 @@
+<div class="min-h-screen bg-black flex items-center justify-center px-4 py-8">
+  <div class="max-w-md w-full space-y-8">
+    <!-- Header -->
+    <div class="text-center">
+      <div
+        class="mx-auto w-16 h-16 bg-linear-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-500/50 mb-4"
+      >
+        <!-- ✅ CORREÇÃO: Usar [img] em vez de name -->
+        <lucide-angular [img]="walletIcon" class="h-8 w-8 text-white" />
+      </div>
+      <h2 class="text-3xl font-bold text-gray-100">
+        {{ isRegistering() ? "Criar Conta" : "Entrar" }}
+      </h2>
+      <p class="mt-2 text-gray-400">
+        {{
+          isRegistering() ? "Crie sua conta para começar" : "Entre na sua conta"
+        }}
+      </p>
+    </div>
+
+    <!-- Form -->
+    <div class="bg-neutral-950 border border-gray-800 rounded-lg p-6">
+      <form (ngSubmit)="onSubmit()" class="space-y-6">
+        <!-- Email -->
+        <div>
+          <label class="block text-sm font-medium text-gray-300 mb-2">
+            Email
+          </label>
+          <div class="relative">
+            <div
+              class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+            >
+              <lucide-angular [img]="mailIcon" class="h-5 w-5 text-gray-400" />
+            </div>
+            <input
+              type="email"
+              [(ngModel)]="credentials().email"
+              name="email"
+              required
+              class="block w-full pl-10 pr-3 py-2 bg-gray-900 border border-gray-700 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+              placeholder="seu@email.com"
+            />
+          </div>
+        </div>
+
+        <!-- Password -->
+        <div>
+          <label class="block text-sm font-medium text-gray-300 mb-2">
+            Senha
+          </label>
+          <div class="relative">
+            <div
+              class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+            >
+              <lucide-angular [img]="lockIcon" class="h-5 w-5 text-gray-400" />
+            </div>
+            <input
+              [type]="showPassword() ? 'text' : 'password'"
+              [(ngModel)]="credentials().password"
+              name="password"
+              required
+              minlength="6"
+              class="block w-full pl-10 pr-10 py-2 bg-gray-900 border border-gray-700 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+              [placeholder]="
+                isRegistering() ? 'Mínimo 6 caracteres' : 'Sua senha'
+              "
+            />
+            <button
+              type="button"
+              (click)="togglePasswordVisibility()"
+              class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-300"
+            >
+              <lucide-angular
+                [img]="showPassword() ? eyeOffIcon : eyeIcon"
+                class="h-5 w-5"
+              />
+            </button>
+          </div>
+        </div>
+
+        <!-- Error Message -->
+        @if (error()) {
+        <div class="bg-red-900/50 border border-red-800 rounded-lg p-3">
+          <p class="text-red-200 text-sm">{{ error() }}</p>
+        </div>
+        }
+
+        <!-- Submit Button -->
+        <button
+          type="submit"
+          [disabled]="isLoading()"
+          class="w-full bg-emerald-600 hover:bg-emerald-700 disabled:bg-emerald-800 text-white py-2 px-4 rounded-lg flex items-center justify-center transition-colors"
+        >
+          @if (isLoading()) {
+          <div
+            class="animate-spin rounded-full h-5 w-5 border-b-2 border-white"
+          ></div>
+          } @else {
+          <lucide-angular
+            [img]="isRegistering() ? userPlusIcon : loginIcon"
+            class="mr-2 h-5 w-5"
+          />
+          {{ isRegistering() ? "Criar Conta" : "Entrar" }}
+          }
+        </button>
+
+        <!-- Toggle Mode -->
+        <div class="text-center">
+          <button
+            type="button"
+            (click)="toggleMode()"
+            class="text-emerald-500 hover:text-emerald-400 text-sm font-medium"
+          >
+            {{
+              isRegistering()
+                ? "Já tem uma conta? Entrar"
+                : "Não tem uma conta? Criar conta"
+            }}
+          </button>
+        </div>
+
+        <!-- Quick Login (Desenvolvimento) -->
+        @if (!isRegistering()) {
+        <div class="border-t border-gray-800 pt-4">
+          <button
+            type="button"
+            (click)="quickLogin()"
+            class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg text-sm transition-colors"
+          >
+            🚀 Login Rápido (Desenvolvimento)
+          </button>
+        </div>
+        }
+      </form>
+    </div>
+  </div>
+</div>

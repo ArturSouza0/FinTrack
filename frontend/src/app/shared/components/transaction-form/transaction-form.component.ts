@@ -33,7 +33,6 @@ export class TransactionFormComponent {
 
   errors = signal<Record<string, string>>({});
 
-  // Computed
   categories = this.categoryService.categories;
   filteredCategories = () => this.categories().filter(cat => cat.type === this.formData().type);
 

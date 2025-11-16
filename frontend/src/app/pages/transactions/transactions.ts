@@ -15,6 +15,8 @@ import { CategoryService } from '../../core/services/category.service';
 
 import { TransactionFormComponent } from '../../shared/components/transaction-form/transaction-form.component';
 import { Transaction } from '../../core/models/transaction.model';
+import { AuthService } from '../../core/services/auth.service';
+import { Formatters } from '../../shared/utils/formatters';
 
 @Component({
   selector: 'app-transactions',
@@ -25,6 +27,7 @@ import { Transaction } from '../../core/models/transaction.model';
 export class Transactions implements OnInit {
   transactionService = inject(TransactionService);
   private categoryService = inject(CategoryService);
+  private authService = inject(AuthService);
 
   showForm = signal(false);
   editingTransaction = signal<Transaction | null>(null);
@@ -77,7 +80,6 @@ export class Transactions implements OnInit {
 
   onTransactionSave(transactionData: any) {
     if (transactionData.id) {
-      // Update existing transaction - passa um objeto UpdateTransactionDto
       const updateData = {
         id: transactionData.id,
         title: transactionData.title,
@@ -91,7 +93,6 @@ export class Transactions implements OnInit {
         error: (error) => console.error('Erro ao atualizar transação:', error),
       });
     } else {
-      // Create new transaction
       this.transactionService
         .createTransaction({
           title: transactionData.title,
@@ -108,12 +109,11 @@ export class Transactions implements OnInit {
     }
   }
 
-  deleteTransaction(id: string) {
-    if (confirm('Tem certeza que deseja excluir esta transação?')) {
-      this.transactionService.deleteTransaction(id).subscribe({
-        next: () => console.log('Transação excluída com sucesso'),
-        error: (error) => console.error('Erro ao excluir transação:', error),
-      });
+  async deleteTransaction(id: string) {
+    try {
+      await this.transactionService.deleteTransaction(id);
+    } catch (error: any) {
+      console.error('Erro ao excluir transação:', error);
     }
   }
 
@@ -130,19 +130,13 @@ export class Transactions implements OnInit {
     return type === 'income' ? 'text-emerald-500' : 'text-red-500';
   }
 
-  formatCurrency(value: number): string {
-    return value.toLocaleString('pt-BR', {
-      style: 'currency',
-      currency: 'BRL',
-    });
-  }
+  formatCurrency = Formatters.formatCurrency;
 
   formatDate(dateString: string): string {
     return new Date(dateString).toLocaleDateString('pt-BR');
   }
 
-  private getCurrentUserId(): string {
-    // Implemente de acordo com sua lógica de autenticação
-    return '300d01da-910b-45f0-a3db-d75e35b5c503';
+  private getCurrentUserId(): string | null {
+    return this.authService.getCurrentUserId();
   }
 }

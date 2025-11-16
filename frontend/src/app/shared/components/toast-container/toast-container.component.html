@@ -1,0 +1,26 @@
+ <div class="fixed top-5 right-5 z-50 flex flex-col gap-3">
+      @for (toast of toasts(); track toast.id) {
+        <div 
+          [class]="getToastClasses(toast.type)"
+          class="flex items-start gap-3 p-4 rounded-lg shadow-lg min-w-[300px] max-w-[400px] animate-in slide-in-from-right"
+        >
+          <div class="shrink-0">
+            <lucide-angular [img]="getIcon(toast.type)" [size]="20"></lucide-angular>
+          </div>
+          
+          <div class="flex-1">
+            <div class="font-semibold text-sm">{{ toast.title }}</div>
+            @if (toast.message) {
+              <div class="text-xs opacity-90 mt-1">{{ toast.message }}</div>
+            }
+          </div>
+          
+          <button 
+            (click)="dismissToast(toast.id)"
+            class="shrink-0 p-1 rounded opacity-70 hover:opacity-100 transition-opacity"
+          >
+            <lucide-angular [img]="xIcon" [size]="16"></lucide-angular>
+          </button>
+        </div>
+      }
+    </div>

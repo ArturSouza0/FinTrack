@@ -9,7 +9,7 @@ export interface Category {
 export interface CreateCategoryDto {
   name: string;
   type: 'income' | 'expense';
-  userId: string;
+  userId: string | null;
 }
 
 export interface FindCategoriesByUserIdDto {

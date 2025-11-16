@@ -1,0 +1,81 @@
+<div class="flex h-screen w-full bg-black text-gray-100">
+  <!-- Sidebar Desktop -->
+  <aside
+    class="hidden md:flex h-full w-16 flex-col items-center border-r border-gray-800 bg-neutral-950"
+  >
+    <div
+      class="flex h-16 w-full items-center justify-center border-b border-gray-800"
+    >
+      <div
+        class="w-10 h-10 rounded-xl bg-linear-to-br from-emerald-500 to-emerald-600 flex items-center justify-center shadow-lg shadow-emerald-500/50 cursor-pointer"
+      >
+        <lucide-angular
+          [img]="walletIcon"
+          class="h-5 w-5 text-white"
+        ></lucide-angular>
+      </div>
+    </div>
+
+    <nav class="flex flex-1 flex-col items-center gap-4 py-4">
+      @for (item of navigationItems; track item.name) {
+      <a
+        [routerLink]="item.href"
+        routerLinkActive="bg-emerald-500/10 text-emerald-500"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="flex h-10 w-10 items-center justify-center rounded-lg transition-colors text-gray-400 hover:bg-gray-800 hover:text-gray-100"
+        [title]="item.name"
+      >
+        <lucide-angular [img]="item.icon" class="h-5 w-5"></lucide-angular>
+      </a>
+      }
+    </nav>
+
+    <div class="flex flex-col items-center gap-4 py-4">
+      <!-- User Info -->
+      @if (user(); as currentUser) {
+      <div
+        class="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-500"
+        [title]="currentUser.name"
+      >
+        <lucide-angular [img]="userIcon" class="h-5 w-5"></lucide-angular>
+      </div>
+      }
+
+      <!-- Logout -->
+      <button
+        (click)="handleLogout()"
+        class="flex h-10 w-10 items-center justify-center rounded-lg text-gray-400 hover:bg-gray-800 hover:text-gray-100 transition-colors"
+        title="Sair"
+      >
+        <lucide-angular [img]="logoutIcon" class="h-5 w-5"></lucide-angular>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="flex flex-1 flex-col">
+    <header
+      class="flex h-16 items-center justify-between border-b border-gray-800 bg-neutral-950 px-4 md:px-6"
+    >
+      <div class="flex items-center gap-4">
+        <h1 class="text-xl font-semibold text-gray-100">
+          {{ currentPageName }}
+        </h1>
+      </div>
+
+      <!-- User Info Mobile -->
+      @if (user(); as currentUser) {
+      <div class="flex items-center gap-3 text-sm text-gray-400">
+        <lucide-angular [img]="userIcon" class="h-4 w-4" />
+        <span class="hidden sm:block">{{ currentUser.name }}</span>
+      </div>
+      }
+    </header>
+
+    <main class="flex-1 overflow-y-auto bg-black p-4 md:p-6 lg:p-8">
+      <router-outlet></router-outlet>
+      <app-toast-container></app-toast-container>
+      <app-confirm-dialog></app-confirm-dialog>
+    </main>
+  </div>
+</div>

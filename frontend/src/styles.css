@@ -1,5 +1,4 @@
 @import "tailwindcss";
-/* Adicione no seu styles.css global ou no style do componente */
 .expense-chart-container {
   container-type: inline-size;
 }
@@ -14,7 +13,20 @@
   }
 }
 
-/* Suaviza as animações do gráfico */
 circle {
   transition: all 0.5s ease-out;
 }
+.animate-in {
+      animation: slideIn 0.3s ease-out;
+    }
+    
+    @keyframes slideIn {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }

@@ -1,42 +1,32 @@
-components/
-├── layout/                        ✅ PRONTO
-│   ├── layout.component.ts
-│   └── layout.component.html
-├── transaction-form/              ✅ PRONTO
-│   ├── transaction-form.component.ts
-│   └── transaction-form.component.html
-├── category-form/                 ✅ PRONTO
-│   ├── category-form.component.ts
-│   └── category-form.component.html
-├── expense-chart/                 ✅ PRONTO
-│   ├── expense-chart.component.ts
-│   └── expense-chart.component.html
-├── recent-transactions/           ✅ PRONTO
-│   ├── recent-transactions.component.ts
-│   └── recent-transactions.component.html
-├── stat-cards/                    ✅ PRONTO
-│   ├── stat-cards.component.ts
-│   └── stat-cards.component.html
-├── loading/                       🚧 FALTANDO
-└── confirm-dialog/                🚧 FALTANDO
-
-pages/
-├── transactions/                  ✅ PRONTO
-│   ├── transactions.ts
-│   └── transactions.html
-├── dashboard/                     ✅ PRONTO (com gráficos responsivos)
-│   ├── dashboard.ts
-│   └── dashboard.html
-├── categories/                    ✅ PRONTO
-│   ├── categories.ts
-│   └── categories.html
-├── reports/                       🚧 PRÓXIMO PASSO
-└── welcome/                       🚧 FALTANDO
-
-core/services/
-├── transaction.service.ts         ✅ PRONTO
-├── category.service.ts            ✅ PRONTO
-├── dashboard.service.ts           ✅ PRONTO (com cálculo de estatísticas)
-├── auth.service.ts                🚧 PRÓXIMO PASSO
-├── storage.service.ts             🚧 PRÓXIMO PASSO
-└── toast.service.ts               🚧 PRÓXIMO PASSO
+src/
+├── app/
+│   ├── components/
+│   │   ├── layout/                        ✅ PRONTO
+│   │   ├── transaction-form/              ✅ PRONTO
+│   │   ├── category-form/                 ✅ PRONTO
+│   │   ├── expense-chart/                 ✅ PRONTO
+│   │   ├── recent-transactions/           ✅ PRONTO
+│   │   ├── stat-cards/                    ✅ PRONTO
+│   │   ├── loading/                       ✅ PRONTO
+│   │   └── confirm-dialog/                ✅ PRONTO
+│   ├── pages/
+│   │   ├── transactions/                  ✅ PRONTO
+│   │   ├── dashboard/                     ✅ PRONTO
+│   │   ├── categories/                    ✅ PRONTO
+│   │   ├── reports/                       ✅ PRONTO
+│   │   └── welcome/                       ✅ PRONTO
+│   ├── core/
+│   │   ├── services/
+│   │   │   ├── transaction.service.ts     ✅ PRONTO 
+│   │   │   ├── category.service.ts        ✅ PRONTO 
+│   │   │   ├── dashboard.service.ts       ✅ PRONTO
+│   │   │   ├── auth.service.ts            ✅ PRONTO 
+│   │   │   ├── storage.service.ts         ✅ PRONTO
+│   │   │   └── toast.service.ts           ✅ PRONTO
+│   │   └── guards/
+│   │       └── auth.guard.ts              ✅ PRONTO
+│   ├── shared/
+│   │   └── utils/                         ✅ PRONTO
+│   └── environments/
+│       ├── environment.ts                 ✅ PRONTO
+│       └── environment.prod.ts            ✅ PRONTO

@@ -19,7 +19,7 @@ export interface CreateTransactionDto {
   type: 'income' | 'expense';
   date: string;
   categoryId: string;
-  userId: string;
+  userId: string | null;
   receiptUrl?: string;
 }
 
