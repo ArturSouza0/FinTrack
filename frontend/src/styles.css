@@ -1,4 +1,82 @@
 @import "tailwindcss";
+/* ===== ANIMAÇÕES ===== */
+/* Adicione ao seu CSS para animações suaves */
+path {
+  transition: all 0.3s ease;
+}
+
+path:hover {
+  opacity: 0.8;
+  transform: scale(1.02);
+}
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+/* Adicione ao seu CSS global */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-slide-in {
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: slideIn 0.4s ease-out forwards;
+}
+
+.animate-scale-in {
+  opacity: 0;
+  transform: scale(0.8) rotate(-90deg);
+  animation: scaleIn 0.6s ease-out forwards;
+}
+
+.animate-draw-circle {
+  opacity: 0;
+  animation: drawCircle 0.8s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes drawCircle {
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+/* Transições suaves para elementos do gráfico */
+circle {
+  transition: all 0.5s ease-out;
+}
+
+/* ===== CONTAINER QUERIES ===== */
 .expense-chart-container {
   container-type: inline-size;
 }
@@ -13,20 +91,44 @@
   }
 }
 
-circle {
-  transition: all 0.5s ease-out;
+/* ===== RESPONSIVIDADE MOBILE ===== */
+
+/* Telas pequenas (até 360px) */
+@media (max-width: 360px) {
+  .text-xs {
+    font-size: 0.65rem;
+  }
+  
+  .h-5.w-5 {
+    height: 1rem;
+    width: 1rem;
+  }
 }
-.animate-in {
-      animation: slideIn 0.3s ease-out;
-    }
-    
-    @keyframes slideIn {
-      from {
-        transform: translateX(100%);
-        opacity: 0;
-      }
-      to {
-        transform: translateX(0);
-        opacity: 1;
-      }
-    }
+
+/* Tablets e mobile (até 768px) */
+@media (max-width: 768px) {
+  /* Garantir que conteúdo não fique atrás da navegação */
+  main {
+    padding-bottom: 5rem !important;
+  }
+  
+  /* Melhorar área de toque */
+  button, a, .clickable {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Mobile (até 640px) */
+@media (max-width: 640px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== UTILITÁRIOS ===== */
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

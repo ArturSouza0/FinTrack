@@ -58,24 +58,63 @@
       class="flex h-16 items-center justify-between border-b border-gray-800 bg-neutral-950 px-4 md:px-6"
     >
       <div class="flex items-center gap-4">
+        <!-- Mobile Logo -->
+        <div class="md:hidden">
+          <div
+            class="w-8 h-8 rounded-lg bg-linear-to-br from-emerald-500 to-emerald-600 flex items-center justify-center"
+          >
+            <lucide-angular
+              [img]="walletIcon"
+              class="h-4 w-4 text-white"
+            ></lucide-angular>
+          </div>
+        </div>
         <h1 class="text-xl font-semibold text-gray-100">
           {{ currentPageName }}
         </h1>
       </div>
 
-      <!-- User Info Mobile -->
+      <!-- User Info Desktop -->
       @if (user(); as currentUser) {
-      <div class="flex items-center gap-3 text-sm text-gray-400">
+      <div class="hidden md:flex items-center gap-3 text-sm text-gray-400">
         <lucide-angular [img]="userIcon" class="h-4 w-4" />
-        <span class="hidden sm:block">{{ currentUser.name }}</span>
+        <span>{{ currentUser.name }}</span>
       </div>
       }
+
+      <!-- Logout Mobile -->
+      <button
+        (click)="handleLogout()"
+        class="md:hidden p-2 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-gray-100 transition-colors"
+      >
+        <lucide-angular [img]="logoutIcon" class="h-5 w-5"></lucide-angular>
+      </button>
     </header>
 
-    <main class="flex-1 overflow-y-auto bg-black p-4 md:p-6 lg:p-8">
+    <main
+      class="flex-1 overflow-y-auto bg-black p-4 md:p-6 lg:p-8 pb-20 md:pb-6"
+    >
       <router-outlet></router-outlet>
-      <app-toast-container></app-toast-container>
-      <app-confirm-dialog></app-confirm-dialog>
     </main>
   </div>
+
+  <!-- Mobile Bottom Navigation -->
+  <nav
+    class="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-neutral-950 border-t border-gray-800 flex items-center justify-around px-4"
+  >
+    @for (item of navigationItems; track item.name) {
+    <a
+      [routerLink]="item.href"
+      routerLinkActive="bg-emerald-500/10 text-emerald-500"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="mobile-nav-item flex flex-col items-center justify-center gap-1 p-2 rounded-lg transition-colors text-gray-400 hover:bg-gray-800 hover:text-gray-100"
+    >
+      <lucide-angular [img]="item.icon" class="h-5 w-5"></lucide-angular>
+      <span class="text-xs">{{ item.name }}</span>
+    </a>
+    }
+  </nav>
 </div>
+
+<app-toast-container></app-toast-container>
+<app-confirm-dialog></app-confirm-dialog>

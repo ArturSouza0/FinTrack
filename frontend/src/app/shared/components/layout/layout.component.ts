@@ -1,3 +1,4 @@
+// shared/components/layout/layout.component.ts
 import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
